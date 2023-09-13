@@ -1,0 +1,27 @@
+{% extends 'students/base.html'%}
+
+{% block body %}
+
+<div class="card bg-light ms-4 me-4 mb-4 mt-5">
+    <div class="card-header">
+        <i class="fa-solid fa-list fa-lg"></i> Add Student
+    </div>
+    <div class="card-body">
+        <p class="card-text">
+          <div class="table-responsive">
+            <form action="" method="POST">
+                {% csrf_token %}
+             <div style=" display:inline-table; margin-left: 50px;">
+                
+                {{form.as_p}}
+
+             <button id="bt" type="submit">Login</button>
+            </div>
+            </form>
+          </div>
+        </p>   
+    </div>
+</div>
+
+
+{% endblock%}

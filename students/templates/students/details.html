@@ -1,0 +1,29 @@
+{% extends 'students/base.html'%}
+
+{% block body %}
+
+<div class="card bg-light ms-4 me-4 mb-4 mt-5">
+    <div class="card-header">
+        <i class="fa-solid fa-list fa-lg"></i> Student Details
+    </div>
+    <div class="card-body">
+        
+        <p class="card-text">
+          <div class="table-responsive">
+<ul>
+   <div class="sited"><p class="bold">Student number :</p><p>&nbsp;&nbsp;{{students.student_number}}</p></div>
+   <div class="sited"> <p class="bold">Student name :</p><p>&nbsp;&nbsp;{{students.first_name}}   {{students.last_name}}</p></div>
+   <div class="sited"><p class="bold">Student email :</p><p>&nbsp;&nbsp;{{students.email}}</p></div>
+   <div class="sited"><p class="bold">Student field of study:</p><p>&nbsp;&nbsp;{{students.field_of_study}}</p></div>
+   <div class="sited"><p class="bold">Student gpa: </p><p>&nbsp;&nbsp;{{students.gpa}}</p></div>
+   <div class="sited"><p class="bold">Parent: </p><p>&nbsp;&nbsp;{{students.parent.user.first_name}}&nbsp;&nbsp;{{students.parent.user.last_name}}</p></div> 
+</ul>
+
+<a href="{% url 'all_student' %}"><button type="button" id="bt1" >home
+</button></a>
+
+          </div>
+        </p>
+    </div>
+</div>
+{% endblock %}
