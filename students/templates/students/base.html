@@ -20,28 +20,42 @@
           </button>
           <div class="collapse navbar-collapse" id="navbarColor01">
             <ul class="navbar-nav ms-auto">
-            {% if user.is_superuser %}
 
-            <li class="nav-item">
-              <a class="nav-link" href="{% url 'create_user'%}">
-                  <i class="fa-solid fa-users fa-lg"></i> Create user
-              </a>
-            </li>
-
-              <li class="nav-item">
-                <a class="nav-link" href="{% url 'all_student'%}">
-                    <i class="fa-solid fa-list fa-lg"></i> All Students
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="{% url 'add_student' %}">
-                    <i class="fa-light fa-plus fa-lg"></i> Add Student
-                </a>
-              </li>
-
-              {% endif %}
 
               {% if user.is_authenticated %}
+
+              <li class="nav-item ">
+                <a class="nav-link">
+                    <i class="fa-solid fa-user fa-lg"></i> Welcome, {{user.username}}
+                </a>
+              </li>
+
+              {% if user.is_superuser %}
+
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'create_user'%}">
+                    <i class="fa-solid fa-users fa-lg"></i> Create user
+                </a>
+              </li>
+  
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url 'all_student'%}">
+                      <i class="fa-solid fa-list fa-lg"></i> All Students
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url 'add_student' %}">
+                      <i class="fa-light fa-plus fa-lg"></i> Add Student
+                  </a>
+                </li>
+                {% else %}
+                <li class="nav-item ">
+                  <a class="nav-link" href="{% url 'child_records'  %}">
+                      <i class="fa-solid fa-user fa-lg"></i> View child records
+                  </a>
+                </li>
+  
+                {% endif %}
 
               <li class="nav-item ">
                 <a class="nav-link" href="{% url 'logout'%}">
@@ -62,6 +76,10 @@
               </li>
 
               {% endif %}
+
+            
+
+
             
             </ul>
           </div>

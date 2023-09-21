@@ -12,15 +12,18 @@ from django.conf import settings
 
 
 def index(request):
+    user = User.objects.all()
+
     return render(request,'students/index.html')
 
 # create user section
 def create_user(request):
+    global username1
     if request.method == 'POST':
         form = UserForm(request.POST)
         first_name = request.POST.get('first_name')
         last_name = request.POST.get('last_name')
-        username = request.POST.get('username')
+        username1 = request.POST.get('username')
         email = request.POST.get('email')
         password = request.POST.get('password')
         phone = request.POST.get('phone')
@@ -28,7 +31,7 @@ def create_user(request):
         global context
         context ={'form':form}
         if password == confirm_password:
-           if Our_user.objects.filter(username=username).exists():
+           if Our_user.objects.filter(username=username1).exists():
                messages.info(request,'username already exist')
                return render(request,'students/create_user.html', context)
            else:
@@ -36,10 +39,10 @@ def create_user(request):
                    messages.info(request,'email already exist')
                    return render(request,'students/create_user.html', context)
                else:
-                   user = User.objects.create_user(username=username,first_name=first_name,last_name=last_name,
+                   user = User.objects.create_user(username=username1,first_name=first_name,last_name=last_name,
                                email=email,password=password)
                    user.save()
-                   our_user = Our_user(user=user,username=username,first_name=first_name,last_name=last_name,
+                   our_user = Our_user(user=user,username=username1,first_name=first_name,last_name=last_name,
                                email=email,password=password,phone=phone)
                    our_user.save()
                    login(request,user)
@@ -49,7 +52,7 @@ def create_user(request):
                    receiver = [user.email]
                   # send_mail(subject,message,sender,receiver)
                    messages.info(request,'read code succesfully')
-                   return HttpResponseRedirect(reverse('index'))
+                   return HttpResponseRedirect(reverse('index',{'user':user}))
                
 
                
@@ -67,7 +70,7 @@ def login_user(request):
         if request.method == 'POST':
            username= request.POST.get('username')
            password = request.POST.get('password')
-
+           global user
            user = authenticate(username=username,password=password)
            if user is not None:
                login(request,user)
@@ -142,6 +145,24 @@ def delete_student(request,id):
         messages.info(request,'Unable to delete student records')
     return HttpResponseRedirect(reverse('all_student'))
 
+
+def child_records(request):
+    my_students = []
+    user = request.user
+    student = Student.objects.all()
+    for students in student:
+      if students.parent.username == user.username:
+          my_students.append(
+              students
+          )
+          print(my_students)
+    return render(request,'students/child.html',{'student':my_students})
+
+def child_details(request,id):
+    student = Student.objects.get(pk=id)
+    return render(request,'students/child_details.html',{
+        'students':student
+        })
 
 
 

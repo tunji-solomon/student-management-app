@@ -19,7 +19,6 @@ class Our_user(models.Model):
 
 
 
-
 class Student(models.Model):
     student_number = models.PositiveIntegerField()
     first_name = models.CharField(max_length=50)
@@ -28,6 +27,13 @@ class Student(models.Model):
     field_of_study = models.CharField(max_length=50)
     gpa = models.FloatField()
     parent = models.ForeignKey(Our_user, default=False,on_delete=models.CASCADE)
+
+    def __str__(self):
+
+        return f'{self.first_name}  {self.last_name}'
+
+
+    
     
     
 
