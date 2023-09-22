@@ -31,6 +31,16 @@ class Student(models.Model):
     def __str__(self):
 
         return f'{self.first_name}  {self.last_name}'
+    
+class Testimonials(models.Model):
+    fullname = models.CharField(max_length=200)
+    email = models.EmailField(max_length=100)
+    phone = models.CharField(max_length=11)
+    message = models.TextField(max_length=500)
+
+    def __str__(self):
+        return self.fullname
+
 
 
     

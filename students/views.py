@@ -13,8 +13,27 @@ from django.conf import settings
 
 def index(request):
     user = User.objects.all()
+    if request.method =='POST':
+        fullname = request.POST.get('fullname')
+        email = request.POST.get('email')
+        phone = request.POST.get('phone')
+        message = request.POST.get('message')
+        print(fullname,'\n',phone,email,'\n',message)
+        testimonial = Testimonials(fullname=fullname,email=email,phone=phone,message=message)
+        testimonial.save()
+    message_showed = Testimonials.objects.all()
+    my_message = []
+    for message in message_showed:
+        my_message.append(message)
+        my_message.reverse()
+    testimony = my_message[0:2]
 
-    return render(request,'students/index.html')
+    context = {
+
+        'testimony':testimony
+    }
+
+    return render(request,'students/index.html', context)
 
 # create user section
 def create_user(request):
@@ -45,14 +64,16 @@ def create_user(request):
                    our_user = Our_user(user=user,username=username1,first_name=first_name,last_name=last_name,
                                email=email,password=password,phone=phone)
                    our_user.save()
-                   login(request,user)
+                   messages.info(request, 'User registered successfully')
+                   #login(request,user)
                    subject = 'Student Management'
                    message = f'hello,Mr/Mrs {user.first_name} {user.last_name} \n Thank you for registering'
                    sender = settings.EMAIL_HOST_USER
                    receiver = [user.email]
                   # send_mail(subject,message,sender,receiver)
-                   messages.info(request,'read code succesfully')
-                   return HttpResponseRedirect(reverse('index',{'user':user}))
+                   render(request,'students/base.html',{'user':user})
+               return HttpResponseRedirect(reverse('index'))
+               
                
 
                
