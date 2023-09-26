@@ -10,6 +10,6 @@ class StudentAdmin(admin.ModelAdmin):
 class Our_userAdmin(admin.ModelAdmin):
     list_display = ('user', 'email')
 
-admin.site.register(Student,StudentAdmin )
+admin.site.register(Our_student,StudentAdmin )
 admin.site.register(Our_user, Our_userAdmin)
 admin.site.register(Testimonials)

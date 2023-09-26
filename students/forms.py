@@ -8,7 +8,7 @@ class StudentForm(ModelForm):
 
    class Meta:
       
-      model = Student
+      model = Our_student
       fields = '__all__'
       widgets = {
          
@@ -32,41 +32,19 @@ class StudentForm(ModelForm):
             'placeholder':'Enter first name'
          }),
 
-         'email': EmailInput(attrs={
-
+         'dob': DateInput(attrs={
             'class':'form-control',
             'style':'max-width: 300px',
-            'placeholder':'Enter email'
-
-         }),
-
-          'field_of_study': TextInput(attrs={
-            'class':'form-control',
-            'style':'max-width: 300px',
-            'placeholder':'Enter field of study'
-         }),
-
-           'gpa': NumberInput(attrs={
-            'class':'form-control',
-            'style':'max-width: 300px',
-            'placeholder':'Enter GPA'
+            'placeholder':'Enter date of birth'
          }),
 
 
-   
-         'username': TextInput(attrs={
-
-            'class':'form-control',
-            'style': 'max-width:300px',
-            'placeholder':'Select parent'
-         })
       }
 
-      parent = ModelChoiceField(queryset=Student.objects.all(),
+      department = ModelChoiceField(queryset=Our_student.objects.all())
+
+      parent = ModelChoiceField(queryset=Our_student.objects.all(),
        )
-      parent.widget.attrs={
-         'class':'form-control'
-      }
      
 
 class UserForm(ModelForm):

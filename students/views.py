@@ -116,14 +116,30 @@ def logout_user(request):
 
 def all_students(request):
     context = {
-        'students': Student.objects.all()
+        'students': Our_student.objects.all(),
+        'department': 'All departments'
+
     }
+    if request.method == 'POST':
+        selected = request.POST.get('department')
+        if selected == 'All departments':
+            context = {
+            'students': Our_student.objects.all(),
+            'department': selected
+            }
+            return render(request,'students/all_students.html',context)
+        else:
+            context = {
+            'students': Our_student.objects.filter(department = selected),
+            'department': selected
+            }
+            return render(request,'students/all_students.html',context)
     return render(request,'students/all_students.html',context)
         
 # view student informationn section
 
 def view_student(request,id):
-    student = Student.objects.get(pk=id)
+    student = Our_student.objects.get(pk=id)
     return render(request,'students/details.html',{
         'students':student
         })
@@ -143,14 +159,14 @@ def add_student(request):
 
 def update_student(request,id):
     if request.method == 'POST':
-        students = Student.objects.get(pk=id)
+        students = Our_student.objects.get(pk=id)
         student_update = StudentForm(request.POST, instance=students)
         if student_update.is_valid():
             student_update.save()
             return HttpResponseRedirect(reverse('all_student'))
 
     else:
-      students = Student.objects.get(pk=id)
+      students = Our_student.objects.get(pk=id)
       form = StudentForm(instance=students)
 
       return render(request,'students/update_student.html',{'form':form})
@@ -158,7 +174,7 @@ def update_student(request,id):
 # delete student section
 #     
 def delete_student(request,id):
-    student = Student.objects.get(pk=id)
+    student = Our_student.objects.get(pk=id)
     success = student.delete()
     if success:
         messages.info(request, 'Student record deleted successfully')
@@ -170,7 +186,7 @@ def delete_student(request,id):
 def child_records(request):
     my_students = []
     user = request.user
-    student = Student.objects.all()
+    student = Our_student.objects.all()
     for students in student:
       if students.parent.username == user.username:
           my_students.append(
@@ -180,7 +196,7 @@ def child_records(request):
     return render(request,'students/child.html',{'student':my_students})
 
 def child_details(request,id):
-    student = Student.objects.get(pk=id)
+    student = Our_student.objects.get(pk=id)
     return render(request,'students/child_details.html',{
         'students':student
         })

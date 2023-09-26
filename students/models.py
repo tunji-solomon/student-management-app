@@ -19,13 +19,26 @@ class Our_user(models.Model):
 
 
 
-class Student(models.Model):
+class Our_student(models.Model):
+
+    SCIENCE = 'Science'
+    COMMERCIAL = 'Commercial'
+    ART = 'Art'
+    SELECT = ' '
+
+    DEPARTMENT = [
+        (SELECT, 'Select'),
+        (SCIENCE, 'Science'),
+        (COMMERCIAL, 'Commercial'),
+        (ART, 'Art')
+
+    ]
+
     student_number = models.PositiveIntegerField()
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
-    email = models.EmailField(max_length=100)
-    field_of_study = models.CharField(max_length=50)
-    gpa = models.FloatField()
+    dob = models.DateField()
+    department= models.CharField(max_length=50,choices=DEPARTMENT, default= SELECT)
     parent = models.ForeignKey(Our_user, default=False,on_delete=models.CASCADE)
 
     def __str__(self):

@@ -1,8 +1,9 @@
 {% extends 'students/base.html'%}
+{% load static %}
 
 {% block body %}
 
-<div class="card bg-light ms-4 me-4 mb-4 mt-5">
+<div class="card bg-light ms-4 me-4 mt-5" id="childcard">
     <div class="card-header">
         <i class="fa-solid fa-list fa-lg"></i> Student Details
     </div>
@@ -10,17 +11,26 @@
         
         <p class="card-text">
           <div class="table-responsive">
+
+<div style="display: flex; align-items: center;">
+    <div>
+
 <ul>
    <div class="sited"><p class="bold">Student number :</p><p>&nbsp;&nbsp;{{students.student_number}}</p></div>
-   <div class="sited"> <p class="bold">Student name :</p><p>&nbsp;&nbsp;{{students.first_name}}   {{students.last_name}}</p></div>
-   <div class="sited"><p class="bold">Student email :</p><p>&nbsp;&nbsp;{{students.email}}</p></div>
-   <div class="sited"><p class="bold">Student field of study:</p><p>&nbsp;&nbsp;{{students.field_of_study}}</p></div>
-   <div class="sited"><p class="bold">Student gpa: </p><p>&nbsp;&nbsp;{{students.gpa}}</p></div>
+   <div class="sited"> <p class="bold">Fullname :</p><p>&nbsp;&nbsp;{{students.first_name}}   {{students.last_name}}</p></div>
+   <div class="sited"><p class="bold">Department :</p><p>&nbsp;&nbsp;{{students.department}}</p></div>
+   <div class="sited"><p class="bold">Date Of Birth:</p><p>&nbsp;&nbsp;{{students.dob}}</p></div>
    <div class="sited"><p class="bold">Parent: </p><p>&nbsp;&nbsp;{{students.parent.user.first_name}}&nbsp;&nbsp;{{students.parent.user.last_name}}</p></div> 
 </ul>
 
-<a href="{% url 'all_student' %}"><button type="button" id="bt1" >GO Back
+<a href="{% url 'all_student' %}"><button type="button" id="bt1" >Go Back
 </button></a>
+</div>
+<img src="{% static 'media/books.jpg' %} " style="width: auto; height: 400px; border: hsl(from w h s l);"class="ms-auto me-5 mt-0 mb-0">
+
+</div>
+
+
 
           </div>
         </p>
