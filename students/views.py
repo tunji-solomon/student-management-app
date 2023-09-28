@@ -201,6 +201,25 @@ def child_details(request,id):
         'students':student
         })
 
+def blog(request):
+    blog = Blog.objects.all()
+
+    return render(request, 'students/blog.html', {'blog':blog})
+
+def blog_post(request):
+    if request.method == 'POST':
+        title = request.POST.get('title')
+        brief = request.POST.get('brief')
+        content = request.POST.get('content')
+        image = request.FILES.get('image')
+
+        posted_blog = Blog(title=title,brief=brief,content=content,image=image,slug=title)
+        posted_blog.save()
+        return HttpResponseRedirect(reverse('blog_view'))
+
+    return render(request, 'students/blog_post.html')
+
+
 
 
     

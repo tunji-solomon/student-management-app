@@ -13,3 +13,4 @@ class Our_userAdmin(admin.ModelAdmin):
 admin.site.register(Our_student,StudentAdmin )
 admin.site.register(Our_user, Our_userAdmin)
 admin.site.register(Testimonials)
+admin.site.register(Blog)

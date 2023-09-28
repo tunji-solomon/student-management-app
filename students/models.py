@@ -54,6 +54,25 @@ class Testimonials(models.Model):
     def __str__(self):
         return self.fullname
 
+class Blog(models.Model):
+    title = models.CharField(max_length=50, unique=True)
+    slug = models.SlugField(max_length=200, unique=True)
+    brief = models.CharField(max_length=100,default=False)
+    content = models.TextField()
+    image = models.ImageField(upload_to='images')
+    author = models.CharField(max_length=100, blank=True )
+    created_on = models.DateTimeField(auto_now_add=True)
+    updated_on = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+
+        ordering = ['-created_on']
+
+    def __str__(self):
+
+        return self.title
+
+
 
 
     

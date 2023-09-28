@@ -4,7 +4,6 @@
 
     <head>
       <!-- <link rel="stylesheet" href="{% static 'slider.js' %}"> -->
-      <link rel="stylesheet" href="{% static 'css/styles.css'%}">
     </head>
       <div class="container-fluid">
         <h3 class="m-4" >Students</h3>
@@ -39,7 +38,7 @@
 
                 {% if students %}
 
-                <div class="card bg-light ms-4 me-4 mb-4 mt-4">
+                <div class="card bg-light ms-4 me-4 mb-5 mt-4">
                     <div class="card-header">
                         <i class="fa-solid fa-list fa-lg"></i> Student Records
                     </div>
@@ -80,7 +79,7 @@
                                         <i class="fa-solid fa-user-pen fa-lg"></i>
                                     </button></a>
 
-                                      <a class="delete-student" href="{% url 'delete_student' student.id %}"><button type="button" class="btn btn-danger me-1"  data-bs-toggle="modal" data-bs-target="#mymodal
+                                      <a class="delete-student" href="{% url 'delete_student' student.id %}"><button onclick ="return confirm('Confirm to delete {{student.first_name}} &nbsp {{student.last_name}}?');" type="button" class="btn btn-danger me-1"  data-bs-toggle="modal" data-bs-target="#mymodal
                                         {{student.id}}">
                                         <i class="fa-solid fa-trash-can fa-lg"></i>
                                     </button></a>
@@ -121,5 +120,7 @@
             </div>
         </div>
       </div>
+
+      
     {% endblock %}
  
