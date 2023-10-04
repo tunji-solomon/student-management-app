@@ -16,5 +16,6 @@ urlpatterns =[
     path('child_records/', views.child_records, name='child_records'),
     path('child_details/<int:id>', views.child_details, name='child_details'),
     path('blog/', views.blog, name='blog_view'),
-    path('blog_post/', views.blog_post, name='blog_post')
+    path('blog_post/', views.blog_post, name='blog_post'),
+    path('blog_details/<str:slug>', views.blog_details, name='blog_details')
 ]

@@ -2,6 +2,7 @@
 {% load static %}
 
 {% block body %}
+
 <div class="container-fluid">
    <h3 class="m-4" >Your Children Information And Performance</h3>
    <div class="row">
@@ -41,7 +42,7 @@
                                <td>{{student.student_number}}</td>
                                <td>{{student.first_name}}</td>
                                <td>{{student.last_name}}</td>
-                               <td>{{student.field_of_study}}</td>
+                               <td>{{student.department}}</td>
                                <td>
                                 <a href="{% url 'child_details' student.id %}"><button type="button" class="btn btn-success me-1"  data-bs-toggle="modal" data-bs-target="#mymodal
                                   {{student.id}}">

@@ -52,7 +52,7 @@
                             <h2 class="post-title">{{blog.title}}</h2>
                             <h3 class="post-subtitle">{{blog.brief}}</h3>
                         </a>
-                        <a href="#">Read more</a>
+                        <a href="{% url 'blog_details' blog.slug %}">Continue reading</a>
                         <p class="post-meta">
                             <p> Posted on {{blog.created_on}}</p>
                         </p>

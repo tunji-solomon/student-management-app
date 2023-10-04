@@ -192,7 +192,6 @@ def child_records(request):
           my_students.append(
               students
           )
-          print(my_students)
     return render(request,'students/child.html',{'student':my_students})
 
 def child_details(request,id):
@@ -218,6 +217,11 @@ def blog_post(request):
         return HttpResponseRedirect(reverse('blog_view'))
 
     return render(request, 'students/blog_post.html')
+
+def blog_details(request,slug):
+    
+    blog = Blog.objects.get(slug=slug)
+    return render(request,'students/blog_detail.html',{'blog':blog})
 
 
 

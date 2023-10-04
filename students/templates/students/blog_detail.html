@@ -1,0 +1,30 @@
+{% extends 'students/base.html'%}
+{% load static %}
+{% block body %}
+
+    <!-- Main Content-->
+    <div class="container px-4 px-lg-5 mt-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-md-10 col-lg-8 col-xl-7">
+                {% if blog %}
+
+                <!-- Post preview-->
+                <div class="post-preview">
+                    <img src="{{blog.image.url}}" style="width: 700px; height: 450px;">
+                    <a>
+                        <h2 class="post-title mt-2">{{blog.title}}</h2>
+                        <p class="post-subtitle mt-5">{{blog.content}}</p>
+                    </a>
+                    <p class="post-meta">
+                        <p> Posted on {{blog.created_on}}</p>
+                    </p>
+                </div>
+
+                {% endif %}
+                <!-- Divider-->
+                <!-- Pager-->
+                <div class="d-flex justify-content-end mb-4"><a class="btn btn-primary text-uppercase" href="{% url 'blog_view'%}">Back to blog →</a></div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
