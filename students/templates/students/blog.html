@@ -2,40 +2,44 @@
 {% load static %}
 
 {% block body %}
-    <head>
-       
-        <title>Coders College -  blog page</title>
-        <!-- Font Awesome icons (free version)-->
-        <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
-        <!-- Google fonts-->
-        <!-- <link href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
-        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css" /> -->
-        <!-- Core theme CSS (includes Bootstrap)-->
-        <link href="{% static 'css/blog/styles.css' %}" rel="stylesheet">
-        <style>
-            header{
-                background-image: url("{% static 'assets/img/home-bg.jpg' %}");
-                background-position: center center;
-                background-size: cover;
-                overflow: hidden;
-                height: 500px;
-                margin-top: 5px;
-            }
-        </style>
-    </head>
-    <body>
-        <header class="masthead">
-            <div class="container position-relative px-4 px-lg-5">
-                <div class="row gx-4 gx-lg-5 justify-content-center">
-                    <div class="col-md-10 col-lg-8 col-xl-7">
-                        <div class="site-heading">
-                            <h1>Clean Blog</h1>
-                            <span class="subheading">A Blog Theme by Start Bootstrap</span>
-                        </div>
+<head>
+
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <!-- Bootstrap icons-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet" />
+    <link href="{% static 'css/blog/styles.css'%}" rel="stylesheet">
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <style>
+      header{
+
+        background-image: url("{% static 'photos/books.jpg' %}");
+        background-position: center center;
+        background-size: cover;
+        overflow: hidden;
+        height: 500px;
+        margin-top: 5px;
+        
+      }
+    </style>
+</head>
+
+    <!-- Header-->
+    <header class="bg-dark py-5" >
+        <div class="container px-5">
+            <div class="row gx-5 justify-content-center">
+                <div class="col-lg-6">
+                    <div class="text-center my-5">
+                      <div id="schlimg" style="align-items: center;">
+                        <h1 class="display-5 fw-bolder text-white mb-2">Give your child the best education possible</h1>
+                        <p class="lead text-white-50 mb-auto" style="color: white;">Quickly design and customize responsive mobile-first sites with Bootstrap, the world's most popular front-end open source toolkit!</p>
+                      </div>
+                        
                     </div>
                 </div>
             </div>
-        </header>
+        </div>
+    </header>
         <!-- Main Content-->
         <div class="container px-4 px-lg-5">
             <div class="row gx-4 gx-lg-5 justify-content-center">
